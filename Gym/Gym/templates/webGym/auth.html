@@ -1,0 +1,31 @@
+{% extends "webGym/main.html" %}
+{% load static %}
+
+{% block title %}
+   Вход
+{% endblock %}
+
+{% block content %}
+ <div class="columns ">
+   <div class="column is-three-quarters is-three-fifths is-offset-one-fifth">
+    <div class="registration">
+     <form method="post">
+    {% csrf_token %}
+        <div class="form-error">{{ form.non_field_errors }}</div>
+          {% for f in form %}
+         <div class="field">
+            <label class="label" for="{{ f.id_for_label }}">{{f.label}}:</label>
+             <div class="control">
+               {{ f }}
+             </div>
+              <div class="form-error">{{ f.errors }}</div>
+         </div>
+            {% endfor %}
+
+        <button type="submit">Войти</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

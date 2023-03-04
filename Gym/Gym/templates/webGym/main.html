@@ -1,0 +1,237 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style id="stndz-style"></style>
+
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Gym</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/x-icon" href="{% static '/img/favicon.png'%}">
+<!--    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}" type="text/css">-->
+    <link rel="stylesheet" href="{% static '/css/animate.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static '/css/magnific-popup.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static '/css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static '/css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static '/css/swiper.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static '/css/default.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static '/css/header.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static '/css/footer.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static '/css/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static '/css/reg.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static '/css/all.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static '/css/fontello.css' %}" type="text/css">
+
+    <link rel="stylesheet" href="{% static '/css/responsive.css' %}" type="text/css">
+    <link rel="preload" href="{% static '/fonts/1.woff' %}" as="font">
+    <link rel="preload" href="{% static '/fonts/92zatBhPNqw73oTd4g.woff2' %}" as="font">
+    <link rel="preload" href="{% static '/fonts/o-0IIpQlx3QUlC5A4PNr4TRAW_0.woff2' %}" as="font">
+    <link rel="preload" href="{% static '/fonts/o-0NIpQlx3QUlC5A4PNjXhFVYNyB1Wk.woff2' %}" as="font">
+    <link rel="preload" href="{% static '/fonts/fontawesome-webfont.woff2' %}" as="font">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.8.55/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+
+<style></style></head>
+<body>
+    <!-- preloader -->
+    <div class="preloader" style="display: none;">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="spinner">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- preloader-end -->
+    <!-- ==================== Start cursor ==================== -->
+    <div class="mouse-cursor cursor-outer" style="visibility: visible; transform: translate(236px, 802px);"></div>
+    <div class="mouse-cursor cursor-inner" style="visibility: visible; transform: translate(236px, 802px);"></div>
+    <!-- ==================== End cursor ==================== -->
+    <!-- Scroll-top -->
+    <!-- Scroll-top-end -->
+    <!-- header-start -->
+    <header class="header-two">
+        <div class="header-so main-header menu-area " id="sticky-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav class="menu-nav">
+                            <div class="logo">
+                                <a href="#"><img src="{% static '/img/header-logo.png'%}" alt=""></a>
+                            </div>
+                            <div class="call-email">
+                                <ul>
+                                    <li>
+                                        <span class="icon-call">
+                                            <img src="{% static '/img/call-r.png'%}" alt="">
+                                        </span>
+                                        <div class="cont-con">
+                                            <span>Вход</span><br>
+                                            <a href="{% url 'auth' %}"> ссылка </a>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <span class="icon-call">
+<!--                                            <img src="{% static '/img/vk.png'%}" alt="">-->
+                                            <i class="demo-icon icon-vk" style="color: red;font-size: 34px"></i>
+<!--                                            <i class="icon-vkontakte-2"></i>-->
+                                        </span>
+                                        <div class="cont-con">
+                                            <span>ВК</span><br>
+                                            <a href="https://vk.com/spartak_krg">Spartak_krg</a>
+                                        </div>
+
+<!--                                        <img src="{% static '/img/call-r.png'%}" alt="">-->
+                                            <i class="demo-icon icon-instagram" style="color: red;font-size: 34px"></i>
+
+                                        <div class="cont-con">
+                                            <span>Instagram</span><br>
+                                            <a href="#g">Инстраграм</a>
+                                        </div>
+                                    </li>
+                                    {% if request.user.is_authenticated %}
+                                    <li class="header-btn">
+                                        <i class=" icon-user-circle" style="font-size: 34px; color: red"></i>
+                                        <div class="user-name">
+                                             <a href="">
+                                                 {{user.username}}
+                                             </a>
+                                        </div>
+                                    </li>
+
+                                    {% else %}
+                                    <li>
+                                        <a href="{% url 'auth' %}" class="animation-cer btn-call">
+                                            <img src="{% static '/img/user.png'%}" alt="">
+                                        </a>
+                                    </li>
+
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            <div class="d-md-block-two">
+                                <span class="click-two-header"><img src="{% static '/img/menu.png'%}" alt="" class=""></span>
+                                <span class="mobile-nav-toggler no-dis"><img src="{% static '/img/menu.png'%}" alt="" class=""></span>
+                            </div>
+                            <div class="show-two-header">
+                                <div class="navbar-wrap main-menu d-none d-lg-flex float-l-two">
+                                    <ul class="navigation">
+                                        <li class="{% if active_tab == m_item.Alias  %} active  {% else %}  {% endif %}"><a href="{{ m_item.Alias }}">{{ m_item.Name }}</a></li>
+                                        {% if request.user.is_authenticated %}
+                                         <li class=""><a href="{% url 'logout' %}">Выйти</a></li>
+                                         <li class=""><a href="{% url 'my' %}">Личный кабинет</a></li>
+                                        {% else %}
+                                       <li class=""><a href="{% url 'auth' %}">Вход</a></li>
+                                        {% endif %}
+
+                                    </ul>
+                                </div>
+                                <span class="close-two">
+                                    <i class="fa fa-times-circle"></i>
+                                </span>
+                            </div>
+
+                            <!-- Mobile Menu  -->
+                            <div class="mobile-menu">
+                                <nav class="menu-box">
+                                    <div class="close-btn"><i class="fa fa-times"></i></div>
+                                    <div class="nav-logo">
+                                        <a href="https://staging.webdesigntexas.us/gymlab/index.html"><img src="{% static '/img/header-logo.png'%}" alt="" title=""></a>
+                                    </div>
+                                    <div class="menu-outer">
+<!--                                        <li class="{% block ProfileActivate1 %} {% endblock %}"><a href="">Profile</a></li>-->
+<!--                                        <li><a href="https://staging.webdesigntexas.us/gymlab/services.html">Services</a></li>-->
+<!--                                        <li><a href="https://staging.webdesigntexas.us/gymlab/class.html">Clas2s</a></li>-->
+<!--                                        <li><a href="https://staging.webdesigntexas.us/gymlab/blog.html">Blog</a></li>-->
+<!--                                        <li><a href="https://staging.webdesigntexas.us/gymlab/trainer.html">Trainer</a></li>-->
+<!--                                        <li class="menu-item-has-children">-->
+<!--                                            <a href="javascript:void(0)">Pages</a>-->
+<!--                                            <ul class="submenu">-->
+<!--                                                <li><a href="https://staging.webdesigntexas.us/gymlab/services-details.html">Services Details</a></li>-->
+<!--                                                <li><a href="https://staging.webdesigntexas.us/gymlab/blog-details.html">Blogs Details</a></li>-->
+<!--                                                <li><a href="https://staging.webdesigntexas.us/gymlab/class-details.html">Class Details</a></li>-->
+<!--                                                <li><a href="https://staging.webdesigntexas.us/gymlab/faq.html">Faq's</a></li>-->
+
+<!--                                            </ul>-->
+<!--                                        <div class="dropdown-btn"><span class="fa fa-angle-down"></span></div></li>-->
+<!--                                        <li><a href="https://staging.webdesigntexas.us/gymlab/contact.html">contacts</a></li>-->
+<!--                                    </ul>-->
+                                </div>
+                                    <div class="social-links">
+<!--                                        <ul class="clearfix">-->
+<!--                                            <li><a href="https://staging.webdesigntexas.us/gymlab/#"><span class="fa fa-twitter"></span></a></li>-->
+<!--                                            <li><a href="https://staging.webdesigntexas.us/gymlab/#"><span class="fa fa-facebook-square"></span></a></li>-->
+<!--                                            <li><a href="https://staging.webdesigntexas.us/gymlab/#"><span class="fa fa-pinterest-p"></span></a></li>-->
+<!--                                            <li><a href="https://staging.webdesigntexas.us/gymlab/#"><span class="fa fa-instagram"></span></a></li>-->
+<!--                                            <li><a href="https://staging.webdesigntexas.us/gymlab/#"><span class="fa fa-youtube"></span></a></li>-->
+<!--                                        </ul>-->
+                                    </div>
+                                </nav>
+                            </div>
+                            <div class="menu-backdrop"></div>
+                            <!-- End Mobile Menu -->
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header-end -->
+
+    <div class="minsection">
+        <!-- Slider-Start -->
+   <!--     <div class="swiper mySwiper swiper-initialized swiper-horizontal swiper-pointer-events">
+            <div class="swiper-wrapper" id="swiper-wrapper-d8ba827d14774410a" aria-live="polite">
+
+
+                <div class="swiper-slide cover-background swiper-slide-visible swiper-slide-active">
+                    <div class="po-text-gym wow fadeInUp animated" data-wow-delay="0.8s" style="visibility: visible;-webkit-animation-delay: 0.8s; -moz-animation-delay: 0.8s; animation-delay: 0.8s;">
+                        <h1>Заголовок</h1>
+                        <h4>Под</h4>
+                        <ul>
+
+                                                <li><a href="#" class="line-bg"> button </a></li>
+
+
+                      </ul>
+                    </div>
+                </div>
+
+          </div>
+
+    <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-d8ba827d14774410a" aria-disabled="false"></div>
+    <div class="swiper-button-prev swiper-button-disabled" tabindex="-1" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-d8ba827d14774410a" aria-disabled="true"></div>
+    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>-->
+
+     <!-- Slider-End -->
+    <h1 class="title text-center">{% block title %} {% endblock %}</h1>
+
+
+    {% block content %}
+
+    {% endblock %}
+
+
+
+
+
+
+{% include "webGym\footer.html" %}
+
+    <script src="{% static '/js/jquery-3.6.0.min.js'%}"></script>
+    <script src="{% static '/js/bootstrap.min.js'%}"></script>
+    <script src="{% static '/js/wow-animate.min.js'%}"></script>
+    <script src="{% static '/js/isotope.pkgd.min.js'%}"></script>
+    <script src="{% static '/js/jquery.magnific-popup.min.js'%}"></script>
+    <script src="{% static '/js/owl.carousel.min.js'%}"></script>
+    <script src="{% static '/js/swiper.min.js'%}"></script>
+    <script src="{% static '/js/all.js'%}"></script>
+    <script src="{% static '/js/main.js'%}"></script>
+    <script src="{% static '/js/app.js'%}"></script>
+    <script src="{% static '/js/chunk-vendors.js'%}"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+{% extends "webGym/main.html" %}
+{% load static %}
+
+{% block title %}
+  Регистрация
+{% endblock %}
+
+{% block content %}
+
+ <div class="columns ">
+   <div class="column is-three-quarters is-three-fifths is-offset-one-fifth">
+    <div class="registration">
+      <form method="post">
+        {% csrf_token %}
+
+        {% for f in form %}
+         <div class="field">
+           <label class="label" for="{{ f.id_for_label }}">{{f.label}}:</label>
+           <div class="control">
+               {{ f }}
+             </div>
+
+            <div class="form-error">{{ f.errors }}</div>
+         </div>
+          {% endfor %}
+
+<!--        <div class="field">-->
+<!--          <label class="label">Name</label>-->
+<!--          <div class="control">-->
+<!--            <input class="input" type="text" placeholder="Text input">-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="field">-->
+<!--          <label class="label">Username</label>-->
+<!--          <div class="control has-icons-left has-icons-right">-->
+<!--            <input class="input is-success" type="text" placeholder="Text input" value="bulma">-->
+<!--              <span class="icon is-small is-left">-->
+<!--               <i class="fas fa-user"></i>-->
+<!--              </span>-->
+<!--             <span class="icon is-small is-right">-->
+<!--               <i class="fas fa-check"></i>-->
+<!--             </span>-->
+<!--          </div>-->
+<!--          <p class="help is-success">This username is available</p>-->
+<!--        </div>-->
+
+<!--         <div class="field">-->
+<!--           <label class="label">Email</label>-->
+<!--             <div class="control has-icons-left has-icons-right">-->
+<!--               <input class="input is-danger" type="email" placeholder="Email input" value="hello@">-->
+<!--               <span class="icon is-small is-left">-->
+<!--                 <i class="fas fa-envelope"></i>-->
+<!--               </span>-->
+<!--               <span class="icon is-small is-right">-->
+<!--                 <i class="fas fa-exclamation-triangle"></i>-->
+<!--               </span>-->
+<!--            </div>-->
+<!--           <p class="help is-danger">This email is invalid</p>-->
+<!--        </div>-->
+
+<!--        <div class="field is-grouped">-->
+<!--          <div class="control">-->
+<!--            <button class="button is-link">Регистрация</button>-->
+<!--          </div>-->
+<!--          <div class="control">-->
+<!--            <button class="button is-link is-light" type="reset">Очистить</button>-->
+<!--          </div>-->
+<!--          <div class="control">-->
+<!--            <button class="button is-link is-light">Отмена</button>-->
+<!--          </div>-->
+<!--        </div>-->
+           <button type="submit" class="button is-link">Регистрация</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

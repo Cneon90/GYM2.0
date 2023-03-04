@@ -1,0 +1,124 @@
+Установка Vue
+npm install -g @vue/cli
+Создание приложения
+vue create frontend
+
+Установка buefy
+npm install buefy
+
+Автоматическая сборка
+npm install watch
+
+сборка из приложение
+cd .\frontend
+- npm run build
+
+----------------vue.config.js---------------
+const { defineConfig } = require('@vue/cli-service')
+module.exports = defineConfig({
+  transpileDependencies: true
+})
+// Путь к приложению в котором храниться статика django
+const static_dir = 'static'
+// Путь, относительно static_dir
+// В него webpack положит шаблон Vue приложения
+const template_path = 'templates/index.html'
+
+module.exports = {
+  // Paths
+  // Рабочая директория сборки
+  // Я обычно указываю директорию приложения django, которое отвеает за фронт
+  outputDir: process.env.NODE_ENV === 'production' ? static_dir : 'dist/',
+  // Куда пойдёт шаблон проекта
+  indexPath: process.env.NODE_ENV === 'production' ? template_path : 'index.html',
+  // Куда пойдут ассеты (относительно outputDir)
+  assetsDir: '', // ассеты храним там же, где и JS/CSS
+  // Путь по которому можно достать статику
+  // Нужно указать тот, который прописан в STATIC_URL настроек django
+  publicPath: process.env.NODE_ENV === 'production' ? 'static' : '/'
+}
+----------------vue.config.js---------------
+
+Добавление кнопки плай в pyCharm
+-----------------------------------
+package.json: Пусть к package.json
+command: run
+Script: vue-dev
+-----------------------------------
+
+в packege.json нужно дабавить для запуска скрипта
+-----------------------------------
+"scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "vue-inspect": "vue-cli-service inspect",
+    "vue-build": "vue-cli-service build --no-clean",
+    "vue-build-dev": "vue-cli-service build --no-clean --mode development",
+    "vue-watch-dev": "vue-cli-service build --no-clean --watch --mode development",
+    "vue-dev": "npm run vue-watch-dev --prefix D:\\Programming\\Django\\GYM2.0\\Gym\\frontend\\"
+  }
+-----------------------------------
+
+
+all - package.json
+------------------------------
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "vue-inspect": "vue-cli-service inspect",
+    "vue-build": "vue-cli-service build --no-clean",
+    "vue-build-dev": "vue-cli-service build --no-clean --mode development",
+    "vue-watch-dev": "vue-cli-service build --no-clean --watch --mode development",
+    "vue-dev": "npm run vue-watch-dev --prefix D:\\Programming\\Django\\GYM2.0\\Gym\\frontend\\"
+  },
+  "dependencies": {
+    "core-js": "^3.8.3",
+    "vue": "^2.6.14"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "vue-template-compiler": "^2.6.14"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "@babel/eslint-parser"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
+------------------------------
+
+
+
+
+
+
+
+

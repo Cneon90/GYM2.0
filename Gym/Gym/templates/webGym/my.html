@@ -1,0 +1,70 @@
+{% extends "webGym/main.html" %}
+{% load static %}
+
+{% block title %}
+    Личный кабинет
+{% endblock %}
+
+{% block content %}
+<!-- <script src="{% static 'js/myChart.js' %}"></script>-->
+<!--<script src="{% static 'js/chart.umd.min.js' %}"></script>-->
+
+<div class="box">
+  <div class="columns">
+      <div class="column is-4 auto">
+            Всего посещений:
+       <canvas id="popChart" width="600" height="400"></canvas>
+
+      </div>
+      <div class="column">
+             <a href="#"> Всего посещений </a> <br>
+             <a href="#"> Осталось до истечения абонимента </a>
+          <br>
+          <br>
+
+           <div id="app">
+
+
+
+           </div>
+
+    <script type='text/javascript'>
+
+    </script>
+          <br>
+          <br>
+            Возможность оставить отзыв на главной странице будет доступен при
+          <br>
+
+          <div >
+               статусе:
+              <span class="icon-star"></span>
+              <span class="icon-star"></span>
+              <span class="icon-star"></span>
+          </div>
+
+      </div>
+
+      <div class="column is-2 auto">
+          <div class="status">
+          <div class="status_title"> Ваш статус </div>
+            <div class="status_star">
+              <span class="icon-star"></span>
+              <span class="icon-star-empty"></span>
+              <span class="icon-star-empty"></span>
+              <span class="icon-star-empty"></span>
+              <span class="icon-star-empty"></span>
+            </div>
+         </div>
+     </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}
