@@ -1893,3 +1893,14 @@ h3 {
 .copy-one-to p {
     color: #4f4f4f;
 }
+.footerDown {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+}
+.footerBlack{
+    background: #222222;
+}
+

@@ -122,12 +122,12 @@
                                     <ul class="navigation">
                                         <li class="{% if active_tab == m_item.Alias  %} active  {% else %}  {% endif %}"><a href="{{ m_item.Alias }}">{{ m_item.Name }}</a></li>
                                         {% if request.user.is_authenticated %}
-                                         <li class=""><a href="{% url 'logout' %}">Выйти</a></li>
+                                         <li class=""><a href="{% url 'home' %}">Главная страница</a></li>
                                          <li class=""><a href="{% url 'my' %}">Личный кабинет</a></li>
+                                         <li class=""><a href="{% url 'logout' %}">Выйти</a></li>
                                         {% else %}
                                        <li class=""><a href="{% url 'auth' %}">Вход</a></li>
                                         {% endif %}
-
                                     </ul>
                                 </div>
                                 <span class="close-two">
@@ -210,15 +210,9 @@
      <!-- Slider-End -->
     <h1 class="title text-center">{% block title %} {% endblock %}</h1>
 
-
     {% block content %}
 
     {% endblock %}
-
-
-
-
-
 
 {% include "webGym\footer.html" %}
 

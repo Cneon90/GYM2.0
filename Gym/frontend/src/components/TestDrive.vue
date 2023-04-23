@@ -1,13 +1,13 @@
 <template>
     <section>
-        <b-field label="Select datetime">
-        <b-datetimepicker
-            placeholder="Select a date"
-            icon="calendar-today"
-            :timepicker="timepicker"
-            >
-        </b-datetimepicker>
-    </b-field>
+<!--        <b-field label="Select datetime">-->
+<!--        <b-datetimepicker-->
+<!--            placeholder="Select a date"-->
+<!--            icon="calendar-today"-->
+<!--            :timepicker="timepicker"-->
+<!--            >-->
+<!--        </b-datetimepicker>-->
+<!--    </b-field>-->
     </section>
 </template>
 

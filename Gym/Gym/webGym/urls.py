@@ -1,11 +1,9 @@
-from django.conf.urls import url
-from django.views.generic.base import RedirectView
 from . import views
-from django.urls import path, include
-from django.contrib import admin
-from django.urls import path
 from .views import *
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from .API.v1 import frontend
+from django.urls import path
+from django.views.generic.base import RedirectView
+
 
 urlpatterns = [
 
@@ -16,6 +14,13 @@ urlpatterns = [
     path('registration/', RegisterUser.as_view(), name='registration'),
     path('auth/', LoginUser.as_view(), name='auth'),
     path('logout/', logout_user, name='logout'),
+
+
+    #-----------------------------------API---------------------------
+
+    path('api/mycabinet', frontend.myCabinet),
+    path('api/users/', frontend.UserList.as_view()),
+    path('api/users//', frontend.UserDetail.as_view()),
     path('api/info', views.api),
 
 ]
