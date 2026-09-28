@@ -23,10 +23,11 @@
             <form method="post">
                 {% csrf_token %}
                 <div class="gate-search">
-                    <input type="text" name="q" placeholder="Логин или имя посетителя"
+                    <input type="text" name="q" placeholder="Код карты (10 цифр) или имя/логин"
                            value="{{ request.POST.q|default:'' }}" autofocus>
                     <button class="btn btn-primary" type="submit">Найти</button>
                 </div>
+                <small class="text-muted">✔ Отсканируйте карту или введите код — найдём сразу. Можно искать по имени.</small>
             </form>
         </div>
 
@@ -45,6 +46,7 @@
                 <div class="abo-box {{ abonement.is_active|yesno:'ok,fail' }}">
                     <div class="abo-type">{{ abonement.get_abo_type_display }}</div>
                     <div class="abo-status">{{ abonement.status_text }}</div>
+                    <div class="abo-code">🎫 Код карты: <strong>{{ abonement.card_code_display }}</strong></div>
                     <div class="abo-meta">
                         Срок: {{ abonement.start_date|date:"d.m.Y" }}
                         {% if abonement.end_date %} → {{ abonement.end_date|date:"d.m.Y" }}{% endif %}

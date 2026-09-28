@@ -65,22 +65,36 @@ def gate_panel(request):
                 messages.error(request, 'Вход запрещён: нет активного абонемента.')
             return redirect('gate_panel')
 
-        # Поиск пользователя
+        # Поиск пользователя: по коду карты или по имени/логину
         query = request.POST.get('q', '').strip()
         if query:
-            found_user = (User.objects
-                          .filter(username__iexact=query)
-                          .first())
-            if not found_user:
+            # быстрый скан карты: 10 цифр (позволяем пробелы/другие разделители)
+            digits_query = ''.join(ch for ch in query if ch.isdigit())
+            if len(digits_query) == 10:
+                ab = (Abonement.objects
+                      .filter(card_code=digits_query)
+                      .select_related('user')
+                      .order_by('-id')
+                      .first())
+                if ab:
+                    found_user = ab.user
+                    abonement = ab
+                else:
+                    found_user = None
+            else:
                 found_user = (User.objects
-                              .filter(first_name__icontains=query)
-                              .filter(last_name__icontains=query)
+                              .filter(username__iexact=query)
                               .first())
-            if found_user:
-                abonement = (Abonement.objects
-                             .filter(user=found_user)
-                             .order_by('-id')
-                             .first())
+                if not found_user:
+                    found_user = (User.objects
+                                  .filter(first_name__icontains=query)
+                                  .filter(last_name__icontains=query)
+                                  .first())
+                if found_user:
+                    abonement = (Abonement.objects
+                                 .filter(user=found_user)
+                                 .order_by('-id')
+                                 .first())
 
     context = {
         'found_user': found_user,

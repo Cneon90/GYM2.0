@@ -32,10 +32,20 @@ class AbonementForm(forms.ModelForm):
         required=True,
         widget=forms.TextInput(attrs={'class': 'input', 'placeholder': 'Логин члена клуба'}),
     )
+    card_code = forms.CharField(
+        label='Код карты (10 цифр)',
+        required=False,
+        max_length=10,
+        widget=forms.TextInput(attrs={
+            'class': 'input', 'placeholder': 'Оставьте пустым — сгенерируется',
+            'maxlength': '10', 'inputmode': 'numeric', 'pattern': '[0-9]{10}',
+        }),
+        help_text='Отсканируйте готовую карту или оставьте пустым для авто-генерации.',
+    )
 
     class Meta:
         model = Abonement
-        fields = ['abo_type', 'start_date', 'end_date', 'max_visits']
+        fields = ['abo_type', 'card_code', 'start_date', 'end_date', 'max_visits']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -46,6 +56,18 @@ class AbonementForm(forms.ModelForm):
         self.fields['start_date'].label = 'Начало действия'
         self.fields['end_date'].label = 'Конец действия (для безлимитов)'
         self.fields['max_visits'].label = 'Лимит посещений (для «по числу»)'
+
+    def clean_card_code(self):
+        code = self.cleaned_data.get('card_code') or ''
+        code = ''.join(ch for ch in code if ch.isdigit())
+        if code and len(code) != 10:
+            raise forms.ValidationError('Код карты должен содержать ровно 10 цифр.')
+        if code:
+            existing = Abonement.objects.filter(card_code=code).exclude(pk=self.instance.pk).first()
+            if existing:
+                raise forms.ValidationError(
+                    f'Такой код уже используется у абонемента «{existing.user.username}».')
+        return code or None
 
     def clean(self):
         cleaned = super().clean()
@@ -67,7 +89,7 @@ class AbonementForm(forms.ModelForm):
                 raise forms.ValidationError(f'Пользователь «{username}» не найден.')
             obj.user = user
         if commit:
-            obj.save()
+            obj.save()  # автогенерация кода в Abonement.save(), если card_code пуст
         return obj
 
 

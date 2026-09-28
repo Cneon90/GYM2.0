@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib import admin
 from django.utils import timezone
+import random
+import string
 
 
 # Create your models here.
@@ -62,6 +64,11 @@ class Abonement(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='abonements',
                              verbose_name='Пользователь')
+    card_code = models.CharField(
+        max_length=10, unique=True, blank=True, null=True,
+        verbose_name='Код карты', db_index=True,
+        help_text='10 цифр. Если оставить пустым — сгенерируется автоматически.',
+    )
     abo_type = models.CharField(max_length=10, choices=TYPE_CHOICES, default=TYPE_MONTH,
                                 verbose_name='Тип абонемента')
     start_date = models.DateField(default=timezone.now, verbose_name='Начало действия')
@@ -81,6 +88,24 @@ class Abonement(models.Model):
     def __str__(self):
         return f'{self.user} — {self.get_abo_type_display()}'
 
+    @staticmethod
+    def _make_code():
+        # 10 цифр, исключаем неоднозначные символы читаемости не нужно (только цифры)
+        return ''.join(random.choices(string.digits, k=10))
+
+    def generate_code(self):
+        """Генерирует уникальный 10-значный код карты."""
+        while True:
+            code = self._make_code()
+            if not Abonement.objects.filter(card_code=code).exists():
+                return code
+
+    def save(self, *args, **kwargs):
+        # авто-генерация кода, если он пуст
+        if not self.card_code:
+            self.card_code = self.generate_code()
+        super().save(*args, **kwargs)
+
     @property
     def is_active(self):
         """Абонемент действует (по сроку и/или лимиту)."""
@@ -98,6 +123,15 @@ class Abonement(models.Model):
             return None  # безлимит
         used = self.visits.filter(abonement=self).count()
         return max(0, self.max_visits - used)
+
+    @property
+    def card_code_display(self):
+        """Код карты в формате для карточки: 1234 5678 90."""
+        if not self.card_code:
+            return '—'
+        code = self.card_code
+        # показываем группами по 4 (и остаток), если длина = 10 -> 4-4-2
+        return ' '.join([code[i:i+4] for i in range(0, len(code), 4)])
 
     @property
     def status_text(self):

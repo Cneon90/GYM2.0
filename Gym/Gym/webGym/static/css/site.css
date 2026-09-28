@@ -380,6 +380,7 @@ h1, h2, h3, h4 { letter-spacing: -0.01em; }
   box-shadow: 0 0 0 4px rgba(234,255,90,.18), 0 0 20px rgba(234,255,90,.2);
 }
 .form-error { color: var(--pink); font-size: 13px; margin-top: 4px; }
+.form-help { display: block; color: var(--muted); font-size: 12px; margin-top: 4px; }
 .auth-alt { margin-top: 22px; color: var(--muted); }
 .auth-alt a { color: var(--accent); }
 
@@ -492,6 +493,11 @@ h1, h2, h3, h4 { letter-spacing: -0.01em; }
   box-shadow: var(--glow); }
 .abo-box.fail { border-color: var(--pink); background: rgba(255,63,181,.1); }
 .abo-type { font-weight: 800; font-size: 18px; }
+.abo-code { margin-top: 8px; font-weight: 700; color: var(--text); }
+.abo-code strong {
+  font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  color: var(--accent-2); letter-spacing: .02em;
+}
 .abo-status { font-size: 22px; font-weight: 900; margin-top: 6px; }
 .abo-box.ok .abo-status { color: var(--accent); }
 .abo-box.fail .abo-status { color: var(--pink); }
@@ -523,6 +529,10 @@ h1, h2, h3, h4 { letter-spacing: -0.01em; }
   font-size: 12px; font-weight: 700; }
 .status-pill.ok { background: rgba(234,255,90,.15); color: var(--accent); }
 .status-pill.fail { background: rgba(255,63,181,.12); color: var(--pink); }
+.card-code-cell {
+  font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  color: var(--accent-2); font-weight: 600;
+}
 
 .btn-del { background: transparent; border: 1px solid var(--pink); border-radius: 10px;
   color: var(--pink); width: 30px; height: 30px; cursor: pointer; font-weight: 700; }
