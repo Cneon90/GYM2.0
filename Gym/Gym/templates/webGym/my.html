@@ -6,40 +6,124 @@
 {% block content %}
 <div class="container cabinet">
     <div style="padding-top:110px">
-        <div class="section-head" style="margin-bottom:40px">
+        <div class="section-head" style="margin-bottom:30px">
             <span class="kicker">Личный кабинет</span>
-            <h2 class="neon-title reveal">Привет, {{ user.username|default:"гость" }}!</h2>
+            <h2 class="neon-title reveal">{{ user.username|default:"гость" }}</h2>
             <div class="glow-bar"></div>
         </div>
 
-        <!-- KPI -->
+        {% if messages %}
+            {% for m in messages %}<div class="gate-alert reveal">{{ m }}</div>{% endfor %}
+        {% endif %}
+
+        <!-- ============ ЕСТЬ АБОНЕМЕНТ ============ -->
+        {% if abonement %}
         <div class="kpi-grid">
             <div class="kpi reveal">
                 <div class="ic">🏋️</div>
-                <div class="meta"><strong>{{ items|length }}</strong><span>всего посещений</span></div>
+                <div class="meta"><strong>{{ total_visits }}</strong><span>всего посещений</span></div>
             </div>
             <div class="kpi reveal" data-delay="100">
-                <div class="ic">📅</div>
-                <div class="meta"><strong>5</strong><span>осталось дней абонемента</span></div>
+                <div class="ic">🎟️</div>
+                <div class="meta"><strong>{{ remaining_text }}</strong><span>осталось</span></div>
             </div>
             <div class="kpi reveal" data-delay="200">
-                <div class="ic">🔥</div>
-                <div class="meta"><strong>12</strong><span>тренировок в этом месяце</span></div>
+                <div class="ic">📋</div>
+                <div class="meta"><strong>{{ abonement.get_abo_type_display }}</strong><span>тип абонемента</span></div>
             </div>
         </div>
 
-        <!-- Статус -->
-        <div class="status-box reveal" data-delay="300" style="margin-top:32px">
-            <div class="title">Ваш статус</div>
-            <p class="text-muted">Прогресс уровня члена клуба</p>
-            <div class="meter"><div class="fill"></div></div>
-            <div style="display:flex;justify-content:space-between;margin-top:6px">
-                <span class="text-muted" style="font-size:13px">Новичок</span>
-                <span style="font-size:13px;color:var(--accent)">Спортсмен</span>
+        <!-- Карточка абонемента -->
+        <div class="status-box {{ is_active|yesno:'ok,fail' }}" style="margin-top:30px">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px">
+                <div>
+                    <div class="title">{{ abonement.get_abo_type_display }}</div>
+                    <p class="text-muted" style="margin-top:6px">
+                        Срок: {{ abonement.start_date|date:"d.m.Y" }}
+                        {% if abonement.end_date %} → {{ abonement.end_date|date:"d.m.Y" }}{% endif %}
+                    </p>
+                </div>
+                <div class="abo-code">🎫 Мой код карты: <strong>{{ abonement.card_code_display }}</strong></div>
             </div>
-            <div class="stars" style="margin-top:22px;color:var(--accent);letter-spacing:6px;font-size:22px">★★★☆☆</div>
-            <p class="text-muted" style="margin-top:8px">Оставляйте отзывы и посещайте тренировки, чтобы повышать статус.</p>
+            <div class="abo-status" style="margin-top:14px">
+                <span class="status-pill {{ is_active|yesno:'ok,fail' }}">{{ status }}</span>
+            </div>
         </div>
+
+        <!-- Графики -->
+        <div class="chart-wrap reveal" data-delay="100" style="margin-top:34px">
+            <div class="chart-block">
+                <h3 style="margin-top:0">Когда я приходил <span class="text-muted">(за 30 дней)</span></h3>
+                {% if by_day %}
+                <div class="bar-chart">
+                    {% for d in by_day %}
+                    <div class="bar" data-n="{{ d.n }}" style="height:{% if d.n %}{{ d.n }}0{% else %}4{% endif %}px" title="{{ d.day }}: {{ d.n }}">
+                        <span class="bar-val">{{ d.n }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="hours-labels">
+                    {% for d in by_day %}<span>{{ d.day }}</span>{% endfor %}
+                </div>
+                {% else %}
+                    <p class="text-muted">Посещений за последние 30 дней нет.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="chart-wrap reveal" data-delay="200" style="margin-top:30px">
+            <div class="chart-block">
+                <h3 style="margin-top:0">Во сколько я приходил <span class="text-muted">(час дня)</span></h3>
+                <div class="hours-chart">
+                    {% for h in by_hour %}
+                    <div class="hour-bar" data-n="{{ h.n }}" style="height:{% if h.n %}{{ h.n }}0{% else %}4{% endif %}px" title="{{ h.h }}:00 — {{ h.n }}">
+                        <span class="bar-val">{{ h.n }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="hours-labels">
+                    <span>0</span><span>6</span><span>12</span><span>18</span><span>23</span>
+                </div>
+                <p class="text-muted" style="font-size:12px;margin-top:8px">Ширина колонки = частота посещений в этот час.</p>
+            </div>
+        </div>
+
+        <!-- Последние посещения -->
+        <div class="gate-card reveal" data-delay="300" style="margin-top:30px;margin-bottom:40px">
+            <h3 style="margin-top:0">Последние посещения</h3>
+            <table class="gate-table">
+                <thead><tr><th>Когда</th><th>Абонемент</th></tr></thead>
+                <tbody>
+                    {% for v in recent %}
+                    <tr>
+                        <td>{{ v.entered_at|date:"d.m.Y H:i" }}</td>
+                        <td>{{ v.abonement.get_abo_type_display|default:"—" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="2" class="text-muted">Пока посещений нет — приходите в клуб!</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ============ НЕТ АБОНЕМЕНТА ============ -->
+        {% else %}
+        <div class="gate-card reveal" style="max-width:620px;margin:0 auto">
+            <h3 style="margin-top:0">Привязать абонемент</h3>
+            <p class="text-muted">
+                Купили абонемент и получили карту? Введите 10-значный код с карты — и увидите
+                свою статистику посещений.
+            </p>
+            <form method="post">
+                {% csrf_token %}
+                <div class="gate-search" style="margin-bottom:12px">
+                    <input type="text" name="card_code" inputmode="numeric" maxlength="10"
+                           placeholder="Введите код карты (10 цифр)">
+                    <button class="btn btn-primary" type="submit">Привязать</button>
+                </div>
+            </form>
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

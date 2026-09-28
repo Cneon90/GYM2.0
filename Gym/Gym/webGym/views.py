@@ -1,14 +1,18 @@
 import json
 import random
+from collections import Counter
 from .forms import *
 from .models import *
 from .function import *
 from pathlib import Path
 from django.urls import reverse_lazy
 from django.http import JsonResponse
+from django.contrib import messages
 from django.contrib.auth import logout, login
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView
+from django.utils import timezone
 from django.views.generic import TemplateView, ListView, CreateView
 
 # Create your views here.
@@ -91,28 +95,80 @@ class LoginUser(LoginView):
         return reverse_lazy('home')
 
 
-class MyCabinet(ListView):
-    template_name = 'webGym/my.html'
+@login_required
+def my_cabinet(request):
+    """Личный кабинет посетителя: статистика по абонементу и привязка карты."""
+    user = request.user
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        names = ("bob", "dan", "jack", "lizzy", "susan")
+    # Привязка карты по коду
+    if request.method == 'POST':
+        code = request.POST.get('card_code', '').strip()
+        code = ''.join(ch for ch in code if ch.isdigit())
+        if not code or len(code) != 10:
+            messages.error(request, 'Введите 10-значный код карты.')
+        else:
+            ab = Abonement.objects.filter(card_code=code).select_related('user').first()
+            if not ab:
+                messages.error(request, 'Абонемент с таким кодом не найден.')
+            elif ab.user_id != user.id and ab.user.username != user.username:
+                # код уже занят другим пользователем — откажем в целях безопасности
+                messages.error(request, 'Этот код уже привязан к другому аккаунту.')
+            else:
+                if ab.user_id != user.id:
+                    ab.user = user
+                    ab.save(update_fields=['user'])
+                messages.success(request, 'Карта привязана!')
+                return redirect('my')
+        return redirect('my')
 
-        items = []
-        for i in range(10):
-            items.append({
-                "name": random.choice(names),
-                "age": random.randint(20, 80),
-                "url": "https://example.com",
-            })
+    # Актуальный абонемент (последний по времени)
+    abonement = (Abonement.objects
+                 .filter(user=user)
+                 .order_by('-id')
+                 .first())
 
-        context = {}
-        context["items"] = items
-        context["items_json"] = json.dumps(items)
-        return context
+    context = {'abonement': abonement, 'title': 'Личный кабинет'}
 
-    def get_queryset(self):
-        return 1
+    if abonement:
+        visits = list(Visit.objects.filter(user=user).order_by('-entered_at'))
+        total_visits = len(visits)
+        today = timezone.localdate()
+
+        # Сколько осталось
+        if abonement.abo_type == Abonement.TYPE_VISITS:
+            remaining = abonement.remaining_visits
+            remaining_text = f'{remaining} из {abonement.max_visits}'
+        else:
+            remaining = None
+            if abonement.end_date:
+                days_left = (abonement.end_date - today).days
+                remaining_text = f'{days_left} дн. до конца' if days_left >= 0 else 'истёк'
+            else:
+                remaining_text = 'безлимит'
+
+        # Посещения по месяцам / по дням за последние 30 дней
+        days_counter = Counter(v.entered_at.date() for v in visits
+                               if (today - v.entered_at.date()).days <= 29)
+        by_day = [{'day': d.strftime('%d.%m'), 'n': days_counter[d]}
+                  for d in sorted(days_counter)]
+
+        # Посещения по времени (часы) — во сколько обычно приходит
+        hours_counter = Counter(v.entered_at.hour for v in visits)
+        by_hour = [{'hour': h, 'n': hours_counter.get(h, 0)} for h in range(24)]
+
+        recent = visits[:12]
+
+        context.update({
+            'total_visits': total_visits,
+            'remaining_text': remaining_text,
+            'by_day': by_day,
+            'by_hour': by_hour,
+            'recent': recent,
+            'status': abonement.status_text,
+            'is_active': abonement.is_active,
+        })
+
+    return render(request, 'webGym/my.html', context)
 
 
 def logout_user(request):

@@ -10,7 +10,7 @@ urlpatterns = [
 
     path('', RedirectView.as_view(url='/home', permanent=False), name='home'),
     path('home/', views.home, name='home'),
-    path('my/', MyCabinet.as_view(), name='my'),
+    path('my/', views.my_cabinet, name='my'),
     path('profile/', Profile, name='profile'),
     path('test/', AboutView.as_view()),
     path('registration/', RegisterUser.as_view(), name='registration'),
