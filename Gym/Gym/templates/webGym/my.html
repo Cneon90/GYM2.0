@@ -1,61 +1,45 @@
 {% extends "webGym/main.html" %}
 {% load static %}
 
-{% block title %}
-    Личный кабинет
-{% endblock %}
+{% block title %}Личный кабинет{% endblock %}
 
 {% block content %}
-<div class="box">
-  <div class="columns">
-      <div class="column is-4 auto">
-            Всего посещений:
-       <canvas id="popChart" width="600" height="400"></canvas>
+<div class="container cabinet">
+    <div style="padding-top:110px">
+        <div class="section-head" style="margin-bottom:40px">
+            <span class="kicker">Личный кабинет</span>
+            <h2 class="neon-title reveal">Привет, {{ user.username|default:"гость" }}!</h2>
+            <div class="glow-bar"></div>
+        </div>
 
-      </div>
-      <div class="column">
-             <a href="#"> Всего посещений </a> <br>
-             <a href="#"> Осталось до истечения абонимента </a>
-          <br>
-          <br>
-
-           <div id="app">
-
-           </div>
-
-    <script type='text/javascript'>
-
-    </script>
-          <br>
-          <br>
-            Возможность оставить отзыв на главной странице будет доступен при
-          <br>
-
-          <div>
-               статусе:
-              <span class="icon-star"></span>
-              <span class="icon-star"></span>
-              <span class="icon-star"></span>
-                      <button class="button is-success">Click Me</button>
-
-          </div>
-
-      </div>
-
-      <div class="column is-2 auto">
-          <div class="status">
-          <div class="status_title"> Ваш статус </div>
-            <div class="status_star">
-              <span class="icon-star"></span>
-              <span class="icon-star-empty"></span>
-              <span class="icon-star-empty"></span>
-              <span class="icon-star-empty"></span>
-              <span class="icon-star-empty"></span>
+        <!-- KPI -->
+        <div class="kpi-grid">
+            <div class="kpi reveal">
+                <div class="ic">🏋️</div>
+                <div class="meta"><strong>{{ items|length }}</strong><span>всего посещений</span></div>
             </div>
-         </div>
-     </div>
-  </div>
+            <div class="kpi reveal" data-delay="100">
+                <div class="ic">📅</div>
+                <div class="meta"><strong>5</strong><span>осталось дней абонемента</span></div>
+            </div>
+            <div class="kpi reveal" data-delay="200">
+                <div class="ic">🔥</div>
+                <div class="meta"><strong>12</strong><span>тренировок в этом месяце</span></div>
+            </div>
+        </div>
+
+        <!-- Статус -->
+        <div class="status-box reveal" data-delay="300" style="margin-top:32px">
+            <div class="title">Ваш статус</div>
+            <p class="text-muted">Прогресс уровня члена клуба</p>
+            <div class="meter"><div class="fill"></div></div>
+            <div style="display:flex;justify-content:space-between;margin-top:6px">
+                <span class="text-muted" style="font-size:13px">Новичок</span>
+                <span style="font-size:13px;color:var(--accent)">Спортсмен</span>
+            </div>
+            <div class="stars" style="margin-top:22px;color:var(--accent);letter-spacing:6px;font-size:22px">★★★☆☆</div>
+            <p class="text-muted" style="margin-top:8px">Оставляйте отзывы и посещайте тренировки, чтобы повышать статус.</p>
+        </div>
+    </div>
 </div>
-
-
 {% endblock %}

@@ -1,31 +1,23 @@
 {% extends "webGym/main.html" %}
-   {% block content %}
-<section class="pt-250 pb-300 about-bg  ">
-<div class="container">
+{% load static %}
 
-     <div class="row pb-10">
-        <div class="col-md-9 pl-10">
+{% block title %}Профиль{% endblock %}
 
-        </div>
-      <div class="col-md-3 pl-15">
-         <div class="footer-cont footer-logo mt-20 subs" >
-            <h6>Логин: </h6>
-               <div class="news-f1">
-                  <input type="text" placeholder="Login" class="fill form-control" >
-                  <h6>Пароль: </h6>
-                  <input type="password"  class="fill form-control">
-                 <br>
-                  <button class="btn upcase ">Вход</button>
-               </div>
+{% block content %}
+<div class="auth-wrap">
+    <div class="auth-card reveal" style="padding-top:110px">
+        <h1 class="title">Профиль <span class="neon">пользователя</span></h1>
+        <p class="text-muted" style="margin:6px 0 24px">
+            Здесь будут настройки аккаунта: персональные данные, аватар и предпочтения.
+        </p>
 
-            </div>
-      </div>
-     </div>
+        <div class="field"><label>Логин</label><div class="control"><input type="text" value="{{ user.username|default:'' }}" disabled></div></div>
+        <div class="field"><label>E-mail</label><div class="control"><input type="email" value="{{ user.email|default:'' }}" disabled></div></div>
+        <div class="field"><label>Дата регистрации</label><div class="control"><input type="text" value="{{ user.date_joined|date:'d.m.Y'|default:'—' }}" disabled></div></div>
+
+        <p class="auth-alt text-muted" style="text-align:center">
+            Редактирование профиля станет доступно в ближайшем обновлении.
+        </p>
+    </div>
 </div>
-</section>
-
-
-   {% endblock %}
-
-
-
+{% endblock %}

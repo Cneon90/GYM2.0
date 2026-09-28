@@ -1,431 +1,260 @@
 {% extends "webGym/main.html" %}
 {% load static %}
 
- {% block content %}
-<div id="app">
+{% block content %}
 
-</div>
-    {% endblock %}
-        <!-- About -Start -->
-        <section class="pt-90 pb-90 about-bg">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="min-ab-img pr-50">
-                            <img src="{% static '/img/about-one.png'%}" alt="" class="img-fluid  wow fadeInLeft animated" data-wow-delay="0.3s" style="visibility: visible;-webkit-animation-delay: 0.3s; -moz-animation-delay: 0.3s; animation-delay: 0.3s;">
-                            <span class="po-ab-img">
-                                <img src="{% static '/img/woner.png'%}" alt="" class="img-fluid  wow fadeInUp" data-wow-delay="0.6s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.6s; -moz-animation-delay: 0.6s; animation-delay: 0.6s;">
-                            </span>
-                            <a href="https://staging.webdesigntexas.us/gymlab/#" class="play-po-ab  wow fadeInRight" data-wow-delay="0.9s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.9s; -moz-animation-delay: 0.9s; animation-delay: 0.9s;"><img src="{% static '/img/play.png'%}" alt="" class="img-fluid"></a>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="min-con-about pl-150 wow fadeInRight animated" data-wow-delay="0.3s" style="visibility: visible;-webkit-animation-delay: 0.3s; -moz-animation-delay: 0.3s; animation-delay: 0.3s;">
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+    <div class="grid-lines"></div>
+    <div class="orb"></div>
+    <div class="orb2"></div>
+    <div class="container">
+        <span class="eyebrow reveal">фитнес-клуб · Караганда</span>
+        <h1 class="reveal" data-delay="100">Прокачайте себя<br>до <span class="neon">максимума</span></h1>
+        <p class="lead reveal" data-delay="200">
+            Современный зал, силовые тренировки, групповые программы и персональные тренеры —
+            всё для вашей лучшей версии. Приходите, мы поможем начать уже сегодня.
+        </p>
+        <div class="cta reveal" data-delay="300">
+            <a class="btn btn-primary" href="{% url 'registration' %}">Начать тренировки</a>
+            <a class="btn btn-ghost" href="{% url 'home' %}#pricing">Абонементы</a>
+        </div>
+        <div class="stats-row">
+            <div class="stat reveal" data-delay="200"><div class="num">450<span><sup></sup></span></div><div class="lbl">членов клуба</div></div>
+            <div class="stat reveal" data-delay="300"><div class="num">12<span><sup>+</sup></span></div><div class="lbl">лет опыта</div></div>
+            <div class="stat reveal" data-delay="400"><div class="num">24<span><sup>/7</sup></span></div><div class="lbl">режим работы</div></div>
+            <div class="stat reveal" data-delay="500"><div class="num">98<span><sup>%</sup></span></div><div class="lbl">довольных клиентов</div></div>
+        </div>
+    </div>
+</section>
 
-                            <h5>About</h5>
-                            <h2>Gymlab Fitness</h2>
-                            <p>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                            </p>
-                            <a href="https://staging.webdesigntexas.us/gymlab/#" class="read-more">Read More..</a>
-                        </div>
-                    </div>
-                </div>
+<!-- ===================== О КЛУБЕ ===================== -->
+<section class="section" id="gym">
+    <div class="container">
+        <div class="section-head">
+            <span class="kicker">О клубе</span>
+            <h2 class="neon-title reveal">Клуб, который меняет</h2>
+            <div class="glow-bar"></div>
+        </div>
+        <div class="card-grid">
+            <article class="card reveal">
+                <div class="icon">🏋️</div>
+                <h3>Силовой зал</h3>
+                <p>Свободные веса, тренажёры и кроссфит-зона для построения сильного тела.</p>
+                <span class="tag">Подробнее →</span>
+            </article>
+            <article class="card reveal" data-delay="100">
+                <div class="icon">🔥</div>
+                <h3>Групповые программы</h3>
+                <p>Функциональный тренинг, интервальные и силовые классы в энергичной группе.</p>
+                <span class="tag">Подробнее →</span>
+            </article>
+            <article class="card reveal" data-delay="200">
+                <div class="icon">🥗</div>
+                <h3>Нутрициология</h3>
+                <p>План питания и консультации специалистов, чтобы результат не заставил ждать.</p>
+                <span class="tag">Подробнее →</span>
+            </article>
+            <article class="card reveal" data-delay="300">
+                <div class="icon">🧘</div>
+                <h3>Восстановление</h3>
+                <p>Растяжка, миофасциальный релиз и зона релаксации после нагрузок.</p>
+                <span class="tag">Подробнее →</span>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== АБОНЕМЕНТЫ ===================== -->
+<section class="section section--tint" id="pricing">
+    <div class="container">
+        <div class="section-head">
+            <span class="kicker">Тарифы</span>
+            <h2 class="neon-title reveal">Выберите свой абонемент</h2>
+            <div class="glow-bar"></div>
+            <p>Гибкие условия на любое количество посещений. Оплата помесячно или сразу за период.</p>
+        </div>
+
+        <div class="tabs reveal" role="tablist">
+            <button class="active" data-tab="p-basic">Базовый</button>
+            <button data-tab="p-pro">Про</button>
+            <button data-tab="p-ultra">Ультра</button>
+        </div>
+
+        <div class="pane active" id="p-basic">
+            <div class="plan featured reveal">
+                <div class="ribbon">популярный</div>
+                <h3>Базовый</h3>
+                <div class="price">8 000 <span>₸ / мес</span></div>
+                <ul>
+                    <li>Безлимит на силовой зал в часы работы</li>
+                    <li>Заморозка 1 месяц в год</li>
+                    <li>Доступ в раздевалку и душ</li>
+                </ul>
+                <a class="btn btn-primary" href="{% url 'registration' %}">Выбрать</a>
             </div>
-        </section>
-        <!-- About -End -->
-        <!-- Goal -Start -->
-        <section class="pt-90 pb-90 goal-sec">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="min-gol wow fadeInLeft" data-wow-delay="0.3s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.3s; -moz-animation-delay: 0.3s; animation-delay: 0.3s;">
-                            <span class="po-text-go">Goal</span>
-                            <h2>
-                                Choose<br>
-                                Your Goal
-                            </h2>
-                            <h5>What are your goals? We will give you a detailed plan to help you accomplish them!</h5>
-                        </div>
-                    </div>
-                    <div class="col-md-9">
-                        <div class="owl-demo-test-3 owl-carousel owl-theme pl-20 pr-20 owl-loaded owl-drag">
-
-
-
-
-                        <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-956px, 0px, 0px); transition: all 0s ease 0s; width: 3190px;"><div class="owl-item cloned" style="width: 303.917px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.6s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.6s; -moz-animation-delay: 0.6s; animation-delay: 0.6s;">
-                                <div class="min-goal">
-                                    <img src="{% static '/img/g-2.png'%}" alt="" class="img-fluid">
-                                    <a href="https://staging.webdesigntexas.us/gymlab/#" class="bg-red">
-                                        Weight Loss
-                                    </a>
-                                </div>
-                            </div></div><div class="owl-item cloned" style="width: 303.917px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.9s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.9s; -moz-animation-delay: 0.9s; animation-delay: 0.9s;">
-                                <div class="min-goal">
-                                    <img src="{% static '/img/g-3.png'%}" alt="" class="img-fluid">
-                                    <a href="https://staging.webdesigntexas.us/gymlab/#" class="bg-red">
-                                        Nutrition
-                                    </a>
-                                </div>
-                            </div></div><div class="owl-item cloned" style="width: 303.917px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.12s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.12s; -moz-animation-delay: 0.12s; animation-delay: 0.12s;">
-                                <div class="min-goal">
-                                    <img src="{% static '/img/g-2.png'%}" alt="" class="img-fluid">
-                                    <a href="https://staging.webdesigntexas.us/gymlab/#" class="bg-red">
-                                        Weight Loss
-                                    </a>
-                                </div>
-                            </div></div><div class="owl-item active" style="width: 303.917px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.3s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.3s; -moz-animation-delay: 0.3s; animation-delay: 0.3s;">
-                                <div class="min-goal">
-                                    <img src="{% static '/img/g-1.png'%}" alt="" class="img-fluid">
-                                    <a href="https://staging.webdesigntexas.us/gymlab/#" class="bg-red">
-                                        Functionl Training
-                                    </a>
-                                </div>
-                            </div></div><div class="owl-item active" style="width: 303.917px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.6s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.6s; -moz-animation-delay: 0.6s; animation-delay: 0.6s;">
-                                <div class="min-goal">
-                                    <img src="{% static '/img/g-2.png'%}" alt="" class="img-fluid">
-                                    <a href="https://staging.webdesigntexas.us/gymlab/#" class="bg-red">
-                                        Weight Loss
-                                    </a>
-                                </div>
-                            </div></div><div class="owl-item active" style="width: 303.917px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.9s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.9s; -moz-animation-delay: 0.9s; animation-delay: 0.9s;">
-                                <div class="min-goal">
-                                    <img src="{% static '/img/g-3.png'%}" alt="" class="img-fluid">
-                                    <a href="https://staging.webdesigntexas.us/gymlab/#" class="bg-red">
-                                        Nutrition
-                                    </a>
-                                </div>
-                            </div></div><div class="owl-item" style="width: 303.917px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.12s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.12s; -moz-animation-delay: 0.12s; animation-delay: 0.12s;">
-                                <div class="min-goal">
-                                    <img src="{% static '/img/g-2.png'%}" alt="" class="img-fluid">
-                                    <a href="https://staging.webdesigntexas.us/gymlab/#" class="bg-red">
-                                        Weight Loss
-                                    </a>
-                                </div>
-                            </div></div><div class="owl-item cloned" style="width: 303.917px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.3s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.3s; -moz-animation-delay: 0.3s; animation-delay: 0.3s;">
-                                <div class="min-goal">
-                                    <img src="{% static '/img/g-1.png'%}" alt="" class="img-fluid">
-                                    <a href="https://staging.webdesigntexas.us/gymlab/#" class="bg-red">
-                                        Functionl Training
-                                    </a>
-                                </div>
-                            </div></div><div class="owl-item cloned" style="width: 303.917px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.6s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.6s; -moz-animation-delay: 0.6s; animation-delay: 0.6s;">
-                                <div class="min-goal">
-                                    <img src="{% static '/img/g-2.png'%}" alt="" class="img-fluid">
-                                    <a href="https://staging.webdesigntexas.us/gymlab/#" class="bg-red">
-                                        Weight Loss
-                                    </a>
-                                </div>
-                            </div></div><div class="owl-item cloned" style="width: 303.917px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.9s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.9s; -moz-animation-delay: 0.9s; animation-delay: 0.9s;">
-                                <div class="min-goal">
-                                    <img src="{% static '/img/g-3.png'%}" alt="" class="img-fluid">
-                                    <a href="https://staging.webdesigntexas.us/gymlab/#" class="bg-red">
-                                        Nutrition
-                                    </a>
-                                </div>
-                            </div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><i class="fa fa-angle-left"></i></button><button type="button" role="presentation" class="owl-next"><i class="fa fa-angle-right"></i></button></div><div class="owl-dots disabled"></div></div>
-                    </div>
-                </div>
+            <div class="plan reveal" data-delay="100">
+                <h3>Дневной</h3>
+                <div class="price">6 500 <span>₸ / мес</span></div>
+                <ul>
+                    <li>Посещения с 07:00 до 17:00</li>
+                    <li>Безлимит в будние дни</li>
+                    <li>Вход в групповые классы</li>
+                </ul>
+                <a class="btn btn-ghost" href="{% url 'registration' %}">Выбрать</a>
             </div>
-        </section>
-        <!-- Goal -End -->
-        <!-- Stories -Start -->
-        <section class="pt-90 pb-230 stories-sec">
-            <span class="po-bottom-img"><img src="{% static '/img/gym.png'%}" alt="" class="img-fluid"></span>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 pr-30">
-                        <div class="test-head">
-                            <h4>More  <br> Success <br> Stories</h4>
-                        </div>
-                    </div>
-                    <div class="col-md-7 po-r-stories ">
-                        <span class="head-t-stories">Stories</span>
-                        <div class="owl-demo-test-3 Stories-slide owl-carousel owl-theme pl-20 pr-20 owl-loaded owl-drag">
+        </div>
 
-
-
-
-                        <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-1181px, 0px, 0px); transition: all 0s ease 0s; width: 3940px;"><div class="owl-item cloned" style="width: 378.98px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.6s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.6s; -moz-animation-delay: 0.6s; animation-delay: 0.6s;">
-                                <div class="min-text-stories">
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                    <h3>Anadson steve</h3>
-                                    <h5>Jun 16, 2016</h5>
-                                </div>
-                            </div></div><div class="owl-item cloned" style="width: 378.98px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.9s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.9s; -moz-animation-delay: 0.9s; animation-delay: 0.9s;">
-                                <div class="min-text-stories">
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                    <h3>Karen Paran</h3>
-                                    <h5>March 13, 2015</h5>
-                                </div>
-                            </div></div><div class="owl-item cloned" style="width: 378.98px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.12s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.12s; -moz-animation-delay: 0.12s; animation-delay: 0.12s;">
-                                <div class="min-text-stories">
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                    <h3>Brandon Miller</h3>
-                                    <h5>Feb 22, 2014</h5>
-                                </div>
-                            </div></div><div class="owl-item active" style="width: 378.98px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.3s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.3s; -moz-animation-delay: 0.3s; animation-delay: 0.3s;">
-                                <div class="min-text-stories">
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                    <h3>Brianna Stapleton</h3>
-                                    <h5>July 26, 2016</h5>
-                                </div>
-                            </div></div><div class="owl-item active" style="width: 378.98px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.6s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.6s; -moz-animation-delay: 0.6s; animation-delay: 0.6s;">
-                                <div class="min-text-stories">
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                    <h3>Anadson steve</h3>
-                                    <h5>Jun 16, 2016</h5>
-                                </div>
-                            </div></div><div class="owl-item active" style="width: 378.98px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.9s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.9s; -moz-animation-delay: 0.9s; animation-delay: 0.9s;">
-                                <div class="min-text-stories">
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                    <h3>Karen Paran</h3>
-                                    <h5>March 13, 2015</h5>
-                                </div>
-                            </div></div><div class="owl-item" style="width: 378.98px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.12s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.12s; -moz-animation-delay: 0.12s; animation-delay: 0.12s;">
-                                <div class="min-text-stories">
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                    <h3>Brandon Miller</h3>
-                                    <h5>Feb 22, 2014</h5>
-                                </div>
-                            </div></div><div class="owl-item cloned" style="width: 378.98px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.3s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.3s; -moz-animation-delay: 0.3s; animation-delay: 0.3s;">
-                                <div class="min-text-stories">
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                    <h3>Brianna Stapleton</h3>
-                                    <h5>July 26, 2016</h5>
-                                </div>
-                            </div></div><div class="owl-item cloned" style="width: 378.98px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.6s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.6s; -moz-animation-delay: 0.6s; animation-delay: 0.6s;">
-                                <div class="min-text-stories">
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                    <h3>Anadson steve</h3>
-                                    <h5>Jun 16, 2016</h5>
-                                </div>
-                            </div></div><div class="owl-item cloned" style="width: 378.98px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.9s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.9s; -moz-animation-delay: 0.9s; animation-delay: 0.9s;">
-                                <div class="min-text-stories">
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                    <h3>Karen Paran</h3>
-                                    <h5>March 13, 2015</h5>
-                                </div>
-                            </div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><i class="fa fa-angle-left"></i></button><button type="button" role="presentation" class="owl-next"><i class="fa fa-angle-right"></i></button></div><div class="owl-dots disabled"></div></div>
-                    </div>
-                </div>
+        <div class="pane" id="p-pro">
+            <div class="plan featured reveal">
+                <div class="ribbon">выбор спортсменов</div>
+                <h3>Про</h3>
+                <div class="price">12 000 <span>₸ / мес</span></div>
+                <ul>
+                    <li>Безлимит + все групповые классы</li>
+                    <li>2 персональные тренировки / мес</li>
+                    <li>Пересмотр формы каждые 2 недели</li>
+                </ul>
+                <a class="btn btn-primary" href="{% url 'registration' %}">Выбрать</a>
             </div>
-        </section>
-        <!-- Stories -End -->
-        <!-- Testmonial -Start -->
-       <!--  <section class="pb-150 test-monial">
-            <span class="head-test-m-text">Testimonials</span>
-            <div class="row no-m">
-                <div class="col-md-5 pl-0 pr-90">
-                    <img src="./test-m.png" alt="" class="img-fluid">
-                </div>
-                <div class="col-md-7 p-r-60 po-r-test">
-                    <div class="min-test-text wt-text">
-                        <span>//</span>
-                        <h2>
-                            What Our Clients <br>
-                            are Saying
-                        </h2>
-                    </div>
-                    <div class="owl-demo-test-3 owl-carousel owl-theme pl-20 pr-20 owl-loaded owl-drag">
-
-
-
-
-                    <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-1258px, 0px, 0px); transition: all 0s ease 0s; width: 4194px;"><div class="owl-item cloned" style="width: 404.353px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.6s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.6s; -moz-animation-delay: 0.6s; animation-delay: 0.6s;">
-                            <div class="min-text-test">
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                </p>
-                                <div class="test-i">
-                                    <span><img src="{% static '/img/ag-6.png'%}" alt="" class="img-fluid"></span>
-                                    <h3>John Pitarshon</h3>
-                                    <h6>Director</h6>
-                                </div>
-                            </div>
-                        </div></div><div class="owl-item cloned" style="width: 404.353px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.9s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.9s; -moz-animation-delay: 0.9s; animation-delay: 0.9s;">
-                            <div class="min-text-test">
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                </p>
-                                <div class="test-i">
-                                    <span><img src="{% static '/img/ag-7.png'%}" alt="" class="img-fluid"></span>
-                                    <h3>Martin Smith</h3>
-                                    <h6>Co-founder</h6>
-                                </div>
-                            </div>
-                        </div></div><div class="owl-item cloned" style="width: 404.353px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.12s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.12s; -moz-animation-delay: 0.12s; animation-delay: 0.12s;">
-                            <div class="min-text-test">
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                </p>
-                                <div class="test-i">
-                                    <span><img src="{% static '/img/ag-8.png'%}" alt="" class="img-fluid"></span>
-                                    <h3>Anna Taylor</h3>
-                                    <h6>Co-founder</h6>
-                                </div>
-                            </div>
-                        </div></div><div class="owl-item active" style="width: 404.353px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.3s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.3s; -moz-animation-delay: 0.3s; animation-delay: 0.3s;">
-                            <div class="min-text-test">
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                </p>
-                                <div class="test-i">
-                                    <span><img src="{% static '/img/ag-5.png'%}" alt="" class="img-fluid"></span>
-                                    <h3>Anadson steve</h3>
-                                    <h6>Co-founder</h6>
-                                </div>
-                            </div>
-                        </div></div><div class="owl-item active" style="width: 404.353px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.6s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.6s; -moz-animation-delay: 0.6s; animation-delay: 0.6s;">
-                            <div class="min-text-test">
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                </p>
-                                <div class="test-i">
-                                    <span><img src="{% static '/img/ag-6.png'%}" alt="" class="img-fluid"></span>
-                                    <h3>John Pitarshon</h3>
-                                    <h6>Director</h6>
-                                </div>
-                            </div>
-                        </div></div><div class="owl-item active" style="width: 404.353px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.9s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.9s; -moz-animation-delay: 0.9s; animation-delay: 0.9s;">
-                            <div class="min-text-test">
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                </p>
-                                <div class="test-i">
-                                    <span><img src="{% static '/img/ag-7.png'%}" alt="" class="img-fluid"></span>
-                                    <h3>Martin Smith</h3>
-                                    <h6>Co-founder</h6>
-                                </div>
-                            </div>
-                        </div></div><div class="owl-item" style="width: 404.353px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.12s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.12s; -moz-animation-delay: 0.12s; animation-delay: 0.12s;">
-                            <div class="min-text-test">
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                </p>
-                                <div class="test-i">
-                                    <span><img src="{% static '/img/ag-8.png'%}" alt="" class="img-fluid"></span>
-                                    <h3>Anna Taylor</h3>
-                                    <h6>Co-founder</h6>
-                                </div>
-                            </div>
-                        </div></div><div class="owl-item cloned" style="width: 404.353px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.3s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.3s; -moz-animation-delay: 0.3s; animation-delay: 0.3s;">
-                            <div class="min-text-test">
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                </p>
-                                <div class="test-i">
-                                    <span><img src="{% static '/img/ag-5.png'%}" alt="" class="img-fluid"></span>
-                                    <h3>Anadson steve</h3>
-                                    <h6>Co-founder</h6>
-                                </div>
-                            </div>
-                        </div></div><div class="owl-item cloned" style="width: 404.353px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.6s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.6s; -moz-animation-delay: 0.6s; animation-delay: 0.6s;">
-                            <div class="min-text-test">
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                </p>
-                                <div class="test-i">
-                                    <span><img src="{% static '/img/ag-6.png'%}" alt="" class="img-fluid"></span>
-                                    <h3>John Pitarshon</h3>
-                                    <h6>Director</h6>
-                                </div>
-                            </div>
-                        </div></div><div class="owl-item cloned" style="width: 404.353px; margin-right: 15px;"><div class="item wow fadeInUp" data-wow-delay="0.9s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.9s; -moz-animation-delay: 0.9s; animation-delay: 0.9s;">
-                            <div class="min-text-test">
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                </p>
-                                <div class="test-i">
-                                    <span><img src="{% static '/img/ag-7.png'%}" alt="" class="img-fluid"></span>
-                                    <h3>Martin Smith</h3>
-                                    <h6>Co-founder</h6>
-                                </div>
-                            </div>
-                        </div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><i class="fa fa-angle-left"></i></button><button type="button" role="presentation" class="owl-next"><i class="fa fa-angle-right"></i></button></div><div class="owl-dots disabled"></div></div>
-                </div>
+            <div class="plan reveal" data-delay="100">
+                <h3>Про + Питание</h3>
+                <div class="price">15 000 <span>₸ / мес</span></div>
+                <ul>
+                    <li>Всё из тарифа «Про»</li>
+                    <li>План питания от нутрициолога</li>
+                    <li>Ежемесячное ИНБОДИ-сканирование</li>
+                </ul>
+                <a class="btn btn-ghost" href="{% url 'registration' %}">Выбрать</a>
             </div>
-        </section> -->
-        <!-- Testmonial -End -->
-        <!-- Gallery -Start -->
-        <section class="pt-90 pb-90 gallery-bg">
-            <span class="t-one-img one-g"><img src="{% static '/img/stationary-bike.png'%}" alt="" class="img-fluid"></span>
-            <span class="t-one-img two-g"><img src="{% static '/img/gym1.png'%}" alt="" class="img-fluid"></span>
-            <span class="t-one-img three-g"><img src="{% static '/img/muscle.png'%}" alt="" class="img-fluid"></span>
-          <!--   <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="mid-text">
-                            <span>Gallery</span>
-                            <h2>On Media and Social Media Gallery</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="sec-one  wow fadeInUp" data-wow-delay="0.3s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.3s; -moz-animation-delay: 0.3s; animation-delay: 0.3s;">
-                        <div class="min-gallery">
-                            <a href="https://staging.webdesigntexas.us/gymlab/#">
-                                <img src="{% static '/img/g1.png'%}" alt="" class="img-fluid">
-                            </a>
-                            <a href="https://staging.webdesigntexas.us/gymlab/#" class="bg-line">
-                                Facebook
-                            </a>
-                        </div>
-                    </div>
-                    <div class="sec-one wow fadeInUp" data-wow-delay="0.4s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.4s; -moz-animation-delay: 0.4s; animation-delay: 0.4s;">
-                        <div class="min-gallery">
-                            <a href="https://staging.webdesigntexas.us/gymlab/#">
-                                <img src="{% static '/img/g2.png'%}" alt="" class="img-fluid">
-                            </a>
-                            <a href="https://staging.webdesigntexas.us/gymlab/#" class="bg-line">
-                                Instagram
-                            </a>
-                        </div>
-                    </div>
-                    <div class="sec-one wow fadeInUp" data-wow-delay="0.5s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.5s; -moz-animation-delay: 0.5s; animation-delay: 0.5s;">
-                        <div class="min-gallery">
-                            <a href="https://staging.webdesigntexas.us/gymlab/#">
-                                <img src="{% static '/img/g3.png'%}" alt="" class="img-fluid">
-                            </a>
-                            <a href="https://staging.webdesigntexas.us/gymlab/#" class="bg-line">
-                                Youtube
-                            </a>
-                        </div>
-                    </div>
-                    <div class="sec-one wow fadeInUp" data-wow-delay="0.6s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.6s; -moz-animation-delay: 0.6s; animation-delay: 0.6s;">
-                        <div class="min-gallery">
-                            <a href="https://staging.webdesigntexas.us/gymlab/#">
-                                <img src="{% static '/img/g4.png'%}" alt="" class="img-fluid">
-                            </a>
-                            <a href="https://staging.webdesigntexas.us/gymlab/#" class="bg-line">
-                                Twitter
-                            </a>
-                        </div>
-                    </div>
-                    <div class="sec-one wow fadeInUp" data-wow-delay="0.7s" style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 0.7s; -moz-animation-delay: 0.7s; animation-delay: 0.7s;">
-                        <div class="min-gallery">
-                            <a href="https://staging.webdesigntexas.us/gymlab/#">
-                                <img src="{% static '/img/g5.png'%}" alt="" class="img-fluid">
-                            </a>
-                            <a href="https://staging.webdesigntexas.us/gymlab/#" class="bg-line">
-                                Gallery
-                            </a>
-                        </div>
-                    </div>
-                </div>
+        </div>
+
+        <div class="pane" id="p-ultra">
+            <div class="plan featured reveal">
+                <div class="ribbon">премиум</div>
+                <h3>Ультра</h3>
+                <div class="price">18 000 <span>₸ / мес</span></div>
+                <ul>
+                    <li>Безлимит + все услуги клуба</li>
+                    <li>4 персональные тренировки / мес</li>
+                    <li>Доступ в VIP-зону и сауну</li>
+                    <li>Приоритетная запись на классы</li>
+                </ul>
+                <a class="btn btn-primary" href="{% url 'registration' %}">Выбрать</a>
             </div>
-        </section>
-         Gallery -End -->
+            <div class="plan reveal" data-delay="100">
+                <h3>Гостевой</h3>
+                <div class="price">1 500 <span>₸ / день</span></div>
+                <ul>
+                    <li>Разовое посещение всего зала</li>
+                    <li>Без абонемента и срока</li>
+                    <li>Идеально для первой тренировки</li>
+                </ul>
+                <a class="btn btn-ghost" href="{% url 'registration' %}">Выбрать</a>
+            </div>
+        </div>
+    </div>
+</section>
 
+<!-- ===================== ЦИФРЫ ===================== -->
+<section class="section">
+    <div class="container">
+        <div class="card-grid">
+            <div class="counter reveal"><div class="value">24/7</div><div class="label">часов в сутки</div></div>
+            <div class="counter reveal" data-delay="100"><div class="value">40+</div><div class="label">весов и тренажёров</div></div>
+            <div class="counter reveal" data-delay="200"><div class="value">15</div><div class="label">групповых программ</div></div>
+            <div class="counter reveal" data-delay="300"><div class="value">8</div><div class="label">тренеров в штате</div></div>
+        </div>
+    </div>
+</section>
 
+<!-- ===================== ГАЛЕРЕЯ ===================== -->
+<section class="section section--tint2" id="gallery">
+    <div class="container">
+        <div class="section-head">
+            <span class="kicker">Галерея</span>
+            <h2 class="neon-title reveal">Атмосфера нашего зала</h2>
+            <div class="glow-bar"></div>
+        </div>
+        <div class="gallery">
+            <figure class="reveal">
+                <img src="{% static '/img/gym.png' %}" alt="Основной зал клуба">
+                <figcaption>Силовая зона<small>free weights</small></figcaption>
+            </figure>
+            <figure class="reveal" data-delay="100">
+                <img src="{% static '/img/gym1.png' %}" alt="Кардио-зона">
+                <figcaption>Кардио<small>cardio zone</small></figcaption>
+            </figure>
+            <figure class="reveal" data-delay="200">
+                <img src="{% static '/img/muscle.png' %}" alt="Тренажёры">
+                <figcaption>Тренажёры<small>machines</small></figcaption>
+            </figure>
+            <figure class="reveal" data-delay="300">
+                <img src="{% static '/img/stationary-bike.png' %}" alt="Велосипеды">
+                <figcaption>Велосипеды<small>cycling</small></figcaption>
+            </figure>
+            <figure class="reveal" data-delay="200">
+                <img src="{% static '/img/about-one.png' %}" alt="Тренировка">
+                <figcaption>Тренировка<small>training</small></figcaption>
+            </figure>
+            <figure class="reveal" data-delay="400">
+                <img src="{% static '/img/g1.png' %}" alt="Групповое занятие">
+                <figcaption>Групповое<small>group class</small></figcaption>
+            </figure>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== ОТЗЫВЫ ===================== -->
+<section class="section">
+    <div class="container">
+        <div class="section-head">
+            <span class="kicker">Отзывы</span>
+            <h2 class="neon-title reveal">Что говорят наши члены</h2>
+            <div class="glow-bar"></div>
+        </div>
+        <div class="card-grid">
+            <article class="review reveal">
+                <div class="stars">★★★★★</div>
+                <p>Лучший зал в городе — чисто, современно, тренеры реально заинтересованы в вашем результате.</p>
+                <div class="who">
+                    <img src="{% static '/img/ag-5.png' %}" alt="Пользователь">
+                    <div><strong>Андрей К.</strong><span>Член клуба · 2 года</span></div>
+                </div>
+            </article>
+            <article class="review reveal" data-delay="100">
+                <div class="stars">★★★★★</div>
+                <p>Прошёл с нуля до первого жима штанги за три месяца. Индивидуальная программа — огонь!</p>
+                <div class="who">
+                    <img src="{% static '/img/ag-6.png' %}" alt="Пользователь">
+                    <div><strong>Марина С.</strong><span>Член клуба · 1 год</span></div>
+                </div>
+            </article>
+            <article class="review reveal" data-delay="200">
+                <div class="stars">★★★★☆</div>
+                <p>Отличные групповые классы и удобный график 24/7 — занимаюсь после работы без спешки.</p>
+                <div class="who">
+                    <img src="{% static '/img/ag-7.png' %}" alt="Пользователь">
+                    <div><strong>Дмитрий В.</strong><span>Член клуба · 6 мес</span></div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== ПОДПИСКА ===================== -->
+<section class="section">
+    <div class="container">
+        <div class="newsletter reveal">
+            <h2>Получите консультацию тренера</h2>
+            <p>Оставьте e-mail — бесплатно подберём программу тренировок и рассчитаем абонемент.</p>
+            <form method="post" action="{% url 'home' %}">
+                {% csrf_token %}
+                <input type="email" name="email" placeholder="Ваш e-mail" required>
+                <button class="btn btn-primary" type="submit">Отправить</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
