@@ -1,0 +1,73 @@
+{% extends "webGym/main.html" %}
+{% load static %}
+
+{% block title %}Абонементы{% endblock %}
+
+{% block content %}
+<div class="container gate">
+    <div style="padding-top:110px">
+        <div class="section-head" style="margin-bottom:30px">
+            <span class="kicker">Оператор проходной</span>
+            <h2 class="neon-title reveal">Абонементы</h2>
+            <div class="glow-bar"></div>
+        </div>
+
+        {% if messages %}
+            {% for m in messages %}<div class="gate-alert reveal">{{ m }}</div>{% endfor %}
+        {% endif %}
+
+        <div class="gate-card reveal">
+            <h3 style="margin-top:0">Оформить абонемент</h3>
+            <form method="post" class="gate-form">
+                {% csrf_token %}
+                {% for f in form %}
+                    <div class="field">
+                        <label for="{{ f.id_for_label }}">{{ f.label }}:</label>
+                        <div class="control">{{ f }}</div>
+                        {% if f.errors %}<div class="form-error">{{ f.errors }}</div>{% endif %}
+                    </div>
+                {% endfor %}
+                <button class="btn btn-primary" type="submit">Сохранить абонемент</button>
+            </form>
+        </div>
+
+        <div class="gate-card reveal" data-delay="200" style="margin-top:30px">
+            <h3 style="margin-top:0">Выданные абонементы</h3>
+            <table class="gate-table">
+                <thead>
+                    <tr><th>Пользователь</th><th>Тип</th><th>Срок</th><th>Лимит</th><th>Статус</th><th></th></tr>
+                </thead>
+                <tbody>
+                    {% for ab in abonements %}
+                    <tr>
+                        <td>{{ ab.user.username }}</td>
+                        <td>{{ ab.get_abo_type_display }}</td>
+                        <td>{{ ab.start_date|date:"d.m.Y" }}{% if ab.end_date %} → {{ ab.end_date|date:"d.m.Y" }}{% endif %}</td>
+                        <td>
+                            {% if ab.abo_type == 'visits' %}{{ ab.remaining_visits }}/{{ ab.max_visits }}
+                            {% else %}безлимит{% endif %}
+                        </td>
+                        <td>
+                            <span class="status-pill {{ ab.is_active|yesno:'ok,fail' }}">{{ ab.status_text }}</span>
+                        </td>
+                        <td>
+                            <form method="post" action="{% url 'gate_abonement_delete' ab.id %}"
+                                  onsubmit="return confirm('Удалить абонемент?');">
+                                {% csrf_token %}
+                                <button type="submit" class="btn-del">✕</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="6" class="text-muted">Абонементов пока нет.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="gate-links reveal">
+            <a class="btn btn-ghost" href="{% url 'gate_panel' %}">← На проходную</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

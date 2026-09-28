@@ -25,6 +25,9 @@
                 <a href="{% url 'home' %}#programs">Программы</a>
                 <a href="{% url 'home' %}#pricing">Абонементы</a>
                 <a href="{% url 'home' %}#gallery">Галерея</a>
+                {% if perms.webGym.can_manage_gate %}
+                <a href="{% url 'gate_panel' %}" class="{% if request.resolver_match.url_name == 'gate_panel' %}active{% endif %}">Проходная</a>
+                {% endif %}
             </nav>
 
             <div class="header-actions">
@@ -56,6 +59,9 @@
         <a href="{% url 'home' %}#pricing">Абонементы</a>
         <a href="{% url 'home' %}#gallery">Галерея</a>
         {% if request.user.is_authenticated %}
+            {% if perms.webGym.can_manage_gate %}
+            <a class="{% if request.resolver_match.url_name == 'gate_panel' %}active{% endif %}" href="{% url 'gate_panel' %}">Проходная</a>
+            {% endif %}
             <a href="{% url 'my' %}">Личный кабинет</a>
             <a href="{% url 'profile' %}">Профиль</a>
             <a href="{% url 'logout' %}">Выйти</a>

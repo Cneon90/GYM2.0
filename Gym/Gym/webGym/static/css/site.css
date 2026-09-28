@@ -452,3 +452,92 @@ h1, h2, h3, h4 { letter-spacing: -0.01em; }
 ::-webkit-scrollbar { width: 12px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: linear-gradient(var(--accent), var(--accent-2)); border-radius: 8px; }
+
+/* ============================================================
+   МОДУЛЬ «Проходная» (оператор проходной)
+   ============================================================ */
+.gate-card {
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 30px; box-shadow: var(--shadow);
+}
+.gate-search {
+  display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+}
+.gate-search input {
+  flex: 1; min-width: 280px; padding: 15px 18px; font-size: 16px;
+  background: rgba(11,11,19,.6); color: var(--text);
+  border: 1px solid var(--line); border-radius: 14px;
+}
+.gate-search input:focus { outline: none; border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(234,255,90,.15), 0 0 20px rgba(234,255,90,.2); }
+
+.gate-user-head { display: flex; align-items: center; gap: 18px; }
+.avatar-lg {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--grad); display: grid; place-items: center;
+  color: #0b0b13; font-weight: 900; font-size: 30px; flex-shrink: 0;
+}
+.gate-user-head h3 { font-size: 22px; font-weight: 800; margin: 0; }
+.gate-user-head .text-muted { display: block; margin-top: 4px; }
+
+.abo-box { margin-top: 22px; border-radius: 16px; padding: 18px 22px;
+  border: 1px solid var(--line); background: var(--panel-2); }
+.abo-box.ok { border-color: var(--accent); background:
+  linear-gradient(135deg, rgba(234,255,90,.12), rgba(0,240,200,.12));
+  box-shadow: var(--glow); }
+.abo-box.fail { border-color: var(--pink); background: rgba(255,63,181,.1); }
+.abo-type { font-weight: 800; font-size: 18px; }
+.abo-status { font-size: 22px; font-weight: 900; margin-top: 6px; }
+.abo-box.ok .abo-status { color: var(--accent); }
+.abo-box.fail .abo-status { color: var(--pink); }
+.abo-meta { color: var(--muted); margin-top: 10px; font-size: 14px; }
+
+.gate-denied {
+  margin-top: 18px; padding: 16px; border-radius: 12px;
+  border: 1px solid var(--pink); color: var(--pink);
+  background: rgba(255,63,181,.08); font-weight: 700;
+}
+.gate-alert {
+  padding: 14px 18px; border-radius: 12px; margin-bottom: 22px;
+  border: 1px solid var(--accent-2); color: var(--accent-2);
+  background: rgba(0,240,200,.08);
+}
+
+.gate-links { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+.gate-links .btn-ghost { padding: 12px 24px; font-size: 14px; }
+
+.gate-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.gate-table th { text-align: left; color: var(--muted); font-weight: 700;
+  padding: 12px 12px; border-bottom: 1px solid var(--line); font-size: 13px;
+  text-transform: uppercase; letter-spacing: .05em; }
+.gate-table td { padding: 12px 12px; color: var(--text);
+  border-bottom: 1px solid var(--line); }
+.gate-table tbody tr:hover { background: rgba(234,255,90,.04); }
+
+.status-pill { display: inline-block; padding: 3px 12px; border-radius: 20px;
+  font-size: 12px; font-weight: 700; }
+.status-pill.ok { background: rgba(234,255,90,.15); color: var(--accent); }
+.status-pill.fail { background: rgba(255,63,181,.12); color: var(--pink); }
+
+.btn-del { background: transparent; border: 1px solid var(--pink); border-radius: 10px;
+  color: var(--pink); width: 30px; height: 30px; cursor: pointer; font-weight: 700; }
+.btn-del:hover { background: var(--pink); color: #0b0b13; }
+
+.btn-lg { padding: 16px 34px; font-size: 18px; }
+
+.gate-form .field { margin-bottom: 16px; }
+.gate-form select, .gate-form input[type=date], .gate-form input[type=number] {
+  width: 100%; padding: 13px 14px; font-size: 15px;
+  background: rgba(11,11,19,.6); color: var(--text);
+  border: 1px solid var(--line); border-radius: 12px;
+}
+.gate-form select:focus, .gate-form input:focus {
+  outline: none; border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(234,255,90,.15); }
+
+.bar-chart { display: flex; align-items: flex-end; gap: 10px; height: 180px;
+  padding: 0 10px 0; }
+.bar { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
+.bar-val { font-size: 12px; color: var(--accent); margin-bottom: 4px; }
+.bar { position: relative; background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  width: 26px; border-radius: 4px 4px 2px 2px; min-height: 6px; }

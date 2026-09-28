@@ -1,0 +1,53 @@
+{% extends "webGym/main.html" %}
+{% load static %}
+
+{% block title %}Тренеры{% endblock %}
+
+{% block content %}
+<div class="container gate">
+    <div style="padding-top:110px">
+        <div class="section-head" style="margin-bottom:30px">
+            <span class="kicker">Оператор проходной</span>
+            <h2 class="neon-title reveal">Тренеры клуба</h2>
+            <div class="glow-bar"></div>
+        </div>
+
+        {% if messages %}
+            {% for m in messages %}<div class="gate-alert reveal">{{ m }}</div>{% endfor %}
+        {% endif %}
+
+        <div class="gate-links reveal">
+            <a class="btn btn-primary" href="{% url 'trainer_add' %}">+ Добавить тренера</a>
+            <a class="btn btn-ghost" href="{% url 'gate_panel' %}">← На проходную</a>
+        </div>
+
+        <div class="gate-card reveal" data-delay="100" style="margin-top:26px">
+            <table class="gate-table">
+                <thead>
+                    <tr><th>Имя</th><th>Логин</th><th>Специализация</th><th>Стаж</th><th>Телефон</th><th></th></tr>
+                </thead>
+                <tbody>
+                    {% for t in trainers %}
+                    <tr>
+                        <td>{{ t.user.get_full_name|default:t.user.username }}</td>
+                        <td>{{ t.user.username }}</td>
+                        <td>{{ t.specialization|default:"—" }}</td>
+                        <td>{{ t.experience_years }} лет</td>
+                        <td>{{ t.phone|default:"—" }}</td>
+                        <td>
+                            <form method="post" action="{% url 'trainer_delete' t.id %}"
+                                  onsubmit="return confirm('Удалить тренера и его аккаунт?');">
+                                {% csrf_token %}
+                                <button type="submit" class="btn-del">✕</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="6" class="text-muted">Тренеров пока нет.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

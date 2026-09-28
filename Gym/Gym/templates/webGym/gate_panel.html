@@ -1,0 +1,89 @@
+{% extends "webGym/main.html" %}
+{% load static %}
+
+{% block title %}Проходная{% endblock %}
+
+{% block content %}
+<div class="container gate">
+    <div style="padding-top:110px">
+        <div class="section-head" style="margin-bottom:30px">
+            <span class="kicker">Оператор проходной</span>
+            <h2 class="neon-title reveal">Проверка пропуска</h2>
+            <div class="glow-bar"></div>
+        </div>
+
+        {% if messages %}
+            {% for m in messages %}
+                <div class="gate-alert reveal">{{ m }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <!-- Поиск -->
+        <div class="gate-card reveal">
+            <form method="post">
+                {% csrf_token %}
+                <div class="gate-search">
+                    <input type="text" name="q" placeholder="Логин или имя посетителя"
+                           value="{{ request.POST.q|default:'' }}" autofocus>
+                    <button class="btn btn-primary" type="submit">Найти</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Результат проверки -->
+        {% if found_user %}
+        <div class="gate-card reveal" data-delay="100">
+            <div class="gate-user-head">
+                <span class="avatar-lg">{{ found_user.username|slice:":1"|upper }}</span>
+                <div>
+                    <h3>{{ found_user.get_full_name|default:found_user.username }}</h3>
+                    <span class="text-muted">Логин: {{ found_user.username }}</span>
+                </div>
+            </div>
+
+            {% if abonement %}
+                <div class="abo-box {{ abonement.is_active|yesno:'ok,fail' }}">
+                    <div class="abo-type">{{ abonement.get_abo_type_display }}</div>
+                    <div class="abo-status">{{ abonement.status_text }}</div>
+                    <div class="abo-meta">
+                        Срок: {{ abonement.start_date|date:"d.m.Y" }}
+                        {% if abonement.end_date %} → {{ abonement.end_date|date:"d.m.Y" }}{% endif %}
+                        {% if abonement.abo_type == 'visits' %}
+                            · осталось: <strong>{{ abonement.remaining_visits }} / {{ abonement.max_visits }}</strong>
+                        {% endif %}
+                    </div>
+                </div>
+            {% else %}
+                <div class="abo-box fail">
+                    <div class="abo-status">Нет абонемента</div>
+                </div>
+            {% endif %}
+
+            {% if abonement.is_active %}
+            <form method="post" class="checkin-form" style="margin-top:22px">
+                {% csrf_token %}
+                <input type="hidden" name="checkin_user_id" value="{{ found_user.id }}">
+                <button class="btn btn-primary btn-lg" type="submit">🟢 Отметить вход</button>
+            </form>
+            {% else %}
+                <div class="gate-denied">Вход запрещён — абонемент не активен.</div>
+            {% endif %}
+        </div>
+        {% else %}
+            {% if request.method == 'POST' %}
+            <div class="gate-card reveal" data-delay="100">
+                <div class="gate-denied">Пользователь не найден.</div>
+            </div>
+            {% endif %}
+        {% endif %}
+
+        <div class="gate-links reveal">
+            <a class="btn btn-ghost" href="{% url 'gate_stats' %}">Статистика посещений</a>
+            <a class="btn btn-ghost" href="{% url 'gate_abonements' %}">Абонементы</a>
+            {% if perms.webGym.can_manage_trainers %}
+            <a class="btn btn-ghost" href="{% url 'trainer_list' %}">Тренеры</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
